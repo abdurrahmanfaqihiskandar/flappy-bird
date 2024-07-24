@@ -1,0 +1,26 @@
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: antiquewhite;
+}
+.scoreContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+    height: 50px;
+    background: #5EE270;
+}
+.score {
+    font-size: 15px;
+}
+canvas {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: aqua;
+}
