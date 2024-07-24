@@ -4,49 +4,34 @@ import { useEffect, useRef, useState } from 'react';
 
 import './page.css';
 
-export default function CrowFlappy() {
+export default function ClassicFlappy() {
 	const [score, setScore] = useState({ current: 0, best: 0 });
 	const canvas = useRef();
-	const flappyImg = new Image();
-	const crowImg = new Image();
-	const backgroundImg = new Image();
-	flappyImg.src = 'flappy-bird-set.png';
-	crowImg.src = 'crow-flying-set.png';
-	backgroundImg.src = 'light-city-park.jpg';
-
-	const birdPos = [
-		{ x: 40, y: 20 },
-		{ x: 177, y: 20 },
-		{ x: 308, y: 20 },
-		{ x: 442, y: 20 },
-		{ x: 577, y: 20 },
-		{ x: 44, y: 172 },
-		{ x: 177, y: 172 },
-		{ x: 308, y: 172 },
-		{ x: 441, y: 172 }
-	];
+	const img = new Image();
+	img.src = 'flappy-bird-set.png';
 
 	useEffect(() => {
 		const canvasHeight = canvas.current.height;
 		const canvasWidth = canvas.current.width;
 		const ctx = canvas.current.getContext('2d');
 
+		// general settings
 		const gravity = 0.5,
 			speed = 6.2;
-		const birdWidth = canvasWidth / 8;
-		const birdHeight = canvasHeight / 10;
-		const jumpHeight = -11.5; // Change in flight of bird
+		const birdWidth = 51;
+		const birdHeight = 36;
+		const jumpHeight = -11.5;
 
-		let index = 0, // x-coordinate of canvas
-			flyHeight = canvasHeight / 2 - birdHeight / 2, // Height of bird on screen
-			flight = 0, // Rate of change of height of bird on screen
-			pipes, // array of pipes
+		let index = 0,
+			flight = 0,
+			flyHeight = canvasHeight / 2 - birdHeight / 2,
+			pipes,
 			gameStarted = false,
 			paused = false;
 
 		// pipe settings
-		const pipeWidth = 78; // Width of pipe
-		const pipeGap = 270; // Vertical gap between top and bottom pipes
+		const pipeWidth = 78;
+		const pipeGap = 270;
 		const topPipeHeight = () =>
 			Math.random() * (canvasHeight - (pipeGap + pipeWidth) - pipeWidth) + pipeWidth;
 
@@ -70,15 +55,16 @@ export default function CrowFlappy() {
 		};
 
 		const render = () => {
+			// make the pipe and bird moving
 			index++;
 
 			// background first part
 			ctx.drawImage(
-				backgroundImg,
-				2860,
-				800,
-				1500,
-				1400,
+				img,
+				0,
+				100,
+				canvasWidth,
+				canvasHeight,
 				-((index * (speed / 2)) % canvasWidth) + canvasWidth,
 				0,
 				canvasWidth,
@@ -86,16 +72,18 @@ export default function CrowFlappy() {
 			);
 			// background second part
 			ctx.drawImage(
-				backgroundImg,
-				2860,
-				800,
-				1500,
-				1400,
+				img,
+				0,
+				100,
+				canvasWidth,
+				canvasHeight,
 				-(index * (speed / 2)) % canvasWidth,
 				0,
 				canvasWidth,
 				canvasHeight
 			);
+
+			// pipe display
 			if (gameStarted) {
 				// Draw pipes
 				pipes.map((pipe) => {
@@ -104,25 +92,25 @@ export default function CrowFlappy() {
 
 					// top pipe
 					ctx.drawImage(
-						flappyImg,
-						432, // x-coordinate of pipe image in source image
-						588 - pipe[1], // y-coordinate of pipe image in source image clipped to pipe height
+						img,
+						432,
+						588 - pipe[1],
 						pipeWidth,
-						pipe[1], // clipped to pipe height
+						pipe[1],
 						pipe[0],
-						0, // top of canvas
+						0,
 						pipeWidth,
 						pipe[1]
 					);
 					// bottom pipe
 					ctx.drawImage(
-						flappyImg,
-						432 + pipeWidth, // x-coordinate of pipe image in source image
-						108, // y-coordinate of pipe image in source image
+						img,
+						432 + pipeWidth,
+						108,
 						pipeWidth,
-						canvasHeight - pipe[1] + pipeGap, // clipped to pipe height
+						canvasHeight - pipe[1] + pipeGap,
 						pipe[0],
-						pipe[1] + pipeGap, // top pipe height and pipe gap
+						pipe[1] + pipeGap,
 						pipeWidth,
 						canvasHeight - pipe[1] + pipeGap
 					);
@@ -146,50 +134,52 @@ export default function CrowFlappy() {
 					// collision detection
 					if (
 						[
-							pipe[0] <= canvasWidth / 10 + birdWidth - 5,
+							pipe[0] <= canvasWidth / 10 + birdWidth,
 							pipe[0] + pipeWidth >= canvasWidth / 10,
 							pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + birdHeight
 						].every((elem) => elem)
 					) {
-						paused = true;
-						// gameStarted = false;
-						// setupGame();
+						gameStarted = false;
+						setupGame();
 					}
 				});
 
 				// Draw bird
 				ctx.drawImage(
-					crowImg,
-					birdPos[index % 9].x, // x-coordinate of pipe image in source image
-					birdPos[index % 9].y, // y-coordinate of pipe image in source image
-					120, // width of image to crop
-					140, // height of image to crop
-					canvasWidth / 10, // x-coordinate of canvas to draw onto
-					flyHeight, // y-coordinate of canvas to draw onto
-					birdWidth, // width of drawing
-					birdHeight // height of drawing
+					img,
+					432,
+					Math.floor((index % 9) / 3) * birdHeight,
+					birdWidth,
+					birdHeight,
+					canvasWidth / 10,
+					flyHeight,
+					birdWidth,
+					birdHeight
 				);
 				flight += gravity;
 				flyHeight = Math.min(flyHeight + flight, canvasHeight - birdHeight);
 			} else {
 				ctx.drawImage(
-					crowImg,
-					birdPos[index % 9].x, // x-coordinate of pipe image in source image
-					birdPos[index % 9].y, // y-coordinate of pipe image in source image
-					120, // width of image to crop
-					140, // height of image to crop
-					canvasWidth / 2 - birdWidth / 2, // x-coordinate of canvas to draw onto
-					flyHeight, // y-coordinate of canvas to draw onto
-					birdWidth, // width of drawing
-					birdHeight // height of drawing
+					img,
+					432,
+					Math.floor((index % 9) / 3) * birdHeight,
+					birdWidth,
+					birdHeight,
+					canvasWidth / 2 - birdWidth / 2,
+					flyHeight,
+					birdWidth,
+					birdHeight
 				);
 
 				// Text
-				ctx.fillText('Press space to play', 45, 370);
+				ctx.fillText('Click to play', 90, 535);
 				ctx.font = 'bold 30px courier';
 			}
+
 			if (!paused) window.requestAnimationFrame(render);
 		};
+
+		// launch setup
 		setupGame();
 		render();
 
@@ -209,21 +199,20 @@ export default function CrowFlappy() {
 			}
 		};
 
-		// Start game
+		// start game
 		window.addEventListener('keypress', handleKeyPress);
 		return () => {
 			ctx.reset();
 			window.removeEventListener('keypress', handleKeyPress);
 		};
 	}, []);
-
 	return (
 		<main>
 			<div className="scoreContainer">
 				<h1 className="score">Current score: {score.current}</h1>
 				<h1 className="score">Best score: {score.best}</h1>
 			</div>
-			<canvas ref={canvas} width="431" height="600" />
+			<canvas ref={canvas} id="canvas" width="431" height="600"></canvas>
 		</main>
 	);
 }

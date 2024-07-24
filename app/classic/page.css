@@ -6,6 +6,7 @@ main {
     align-items: flex-start;
     background-color: antiquewhite;
 }
+
 .scoreContainer {
     display: flex;
     justify-content: space-between;
@@ -14,9 +15,11 @@ main {
     height: 50px;
     background: #5EE270;
 }
+
 .score {
     font-size: 14px;
 }
+
 canvas {
     position: absolute;
     top: 50px;
