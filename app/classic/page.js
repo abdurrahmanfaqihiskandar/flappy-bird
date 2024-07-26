@@ -212,7 +212,13 @@ export default function ClassicFlappy() {
 				<h1 className="score">Current score: {score.current}</h1>
 				<h1 className="score">Best score: {score.best}</h1>
 			</div>
-			<canvas ref={canvas} id="canvas" width="431" height="600"></canvas>
+			<canvas
+				className="classicCanvas"
+				ref={canvas}
+				id="canvas"
+				width="431"
+				height="600"
+			></canvas>
 		</main>
 	);
 }

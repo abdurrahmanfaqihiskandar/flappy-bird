@@ -20,7 +20,7 @@ main {
     font-size: 14px;
 }
 
-canvas {
+.classicCanvas {
     position: absolute;
     top: 50px;
     left: 50%;

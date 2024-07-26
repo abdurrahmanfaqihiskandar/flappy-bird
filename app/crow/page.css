@@ -17,7 +17,7 @@ main {
 .score {
     font-size: 14px;
 }
-canvas {
+.crowCanvas {
     position: absolute;
     top: 50px;
     left: 50%;

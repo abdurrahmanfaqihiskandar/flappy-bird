@@ -223,7 +223,7 @@ export default function CrowFlappy() {
 				<h1 className="score">Current score: {score.current}</h1>
 				<h1 className="score">Best score: {score.best}</h1>
 			</div>
-			<canvas ref={canvas} width="431" height="600" />
+			<canvas className="crowCanvas" ref={canvas} width="431" height="600" />
 		</main>
 	);
 }

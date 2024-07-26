@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import BirdCanvas from './BirdCanvas';
 
 import './page.css';
