@@ -2,4 +2,43 @@
     height: 100vh;
     width: 100vw;
     background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+.link {
+    text-decoration: none;
+    color: #000;
+}
+.linkButton {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+    padding: 10px;
+    cursor: pointer;
+}
+.link:hover .linkButton {
+    background-color: rgb(0, 255, 225);
+}
+
+.types {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+.typeButton {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+    padding: 10px;
+    cursor: pointer;
+}
+.typeButton:hover {
+    background-color: rgb(0, 255, 225);
 }
