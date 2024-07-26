@@ -172,7 +172,7 @@ export default function ClassicFlappy() {
 				);
 
 				// Text
-				ctx.fillText('Click to play', 90, 535);
+				ctx.fillText('Press space to play', 45, 370);
 				ctx.font = 'bold 30px courier';
 			}
 
