@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 export default function BirdCanvas() {
+	const [type, setType] = useState('classic');
 	const canvas = useRef();
 	const crowImg = new Image();
 	const flappyImg = new Image();
@@ -24,10 +26,9 @@ export default function BirdCanvas() {
 	const flappyHeight = 36;
 	let top = 200;
 	let index = 0;
-	let type = 'classic';
 
 	const swapType = (newType) => {
-		type = newType;
+		setType(newType);
 		top = 200;
 	};
 
@@ -82,7 +83,7 @@ export default function BirdCanvas() {
 		};
 		renderClassic();
 		return () => ctx.reset();
-	}, []);
+	}, [type]);
 
 	return (
 		<>
@@ -95,6 +96,9 @@ export default function BirdCanvas() {
 					Crow flappy
 				</button>
 			</div>
+			<Link className="link" href={`/${type}`}>
+				<button className="linkButton">Go</button>
+			</Link>
 		</>
 	);
 }

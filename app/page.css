@@ -9,16 +9,12 @@
     gap: 15px;
 }
 
-.links {
-    display: flex;
-    justify-content: space-between;
-    width: 200px;
-}
 .link {
     text-decoration: none;
     color: #000;
 }
 .linkButton {
+    width: 200px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: #f0f0f0;
     padding: 10px;
@@ -35,6 +31,7 @@
 }
 .typeButton {
     border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     background-color: #f0f0f0;
     padding: 10px;
     cursor: pointer;
