@@ -7,12 +7,6 @@ import './page.css';
 export default function CrowFlappy() {
 	const [score, setScore] = useState({ current: 0, best: 0 });
 	const canvas = useRef();
-	const flappyImg = new Image();
-	const crowImg = new Image();
-	const backgroundImg = new Image();
-	flappyImg.src = 'flappy-bird-set.png';
-	crowImg.src = 'crow-flying-set.png';
-	backgroundImg.src = 'light-city-park.jpg';
 
 	const birdPos = [
 		{ x: 40, y: 20 },
@@ -27,6 +21,12 @@ export default function CrowFlappy() {
 	];
 
 	useEffect(() => {
+		const flappyImg = new Image();
+		const crowImg = new Image();
+		const backgroundImg = new Image();
+		flappyImg.src = 'flappy-bird-set.png';
+		crowImg.src = 'crow-flying-set.png';
+		backgroundImg.src = 'light-city-park.jpg';
 		const canvasHeight = canvas.current.height;
 		const canvasWidth = canvas.current.width;
 		const ctx = canvas.current.getContext('2d');

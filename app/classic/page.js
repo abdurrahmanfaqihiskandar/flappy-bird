@@ -7,10 +7,10 @@ import './page.css';
 export default function ClassicFlappy() {
 	const [score, setScore] = useState({ current: 0, best: 0 });
 	const canvas = useRef();
-	const img = new Image();
-	img.src = 'flappy-bird-set.png';
 
 	useEffect(() => {
+		const img = new Image();
+		img.src = 'flappy-bird-set.png';
 		const canvasHeight = canvas.current.height;
 		const canvasWidth = canvas.current.width;
 		const ctx = canvas.current.getContext('2d');

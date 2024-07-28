@@ -6,10 +6,6 @@ import Link from 'next/link';
 export default function BirdCanvas() {
 	const [type, setType] = useState('classic');
 	const canvas = useRef();
-	const crowImg = new Image();
-	const flappyImg = new Image();
-	crowImg.src = 'crow-flying-set.png';
-	flappyImg.src = 'flappy-bird-set.png';
 
 	const crowPos = [
 		{ x: 40, y: 20 },
@@ -33,6 +29,10 @@ export default function BirdCanvas() {
 	};
 
 	useEffect(() => {
+		const crowImg = new Image();
+		const flappyImg = new Image();
+		crowImg.src = 'crow-flying-set.png';
+		flappyImg.src = 'flappy-bird-set.png';
 		const ctx = canvas.current.getContext('2d');
 
 		const renderCrow = () => {
