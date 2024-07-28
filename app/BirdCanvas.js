@@ -82,7 +82,7 @@ export default function BirdCanvas() {
 			}
 		};
 		renderClassic();
-		return () => ctx.reset();
+		// return () => ctx.reset();
 	}, [type]);
 
 	return (

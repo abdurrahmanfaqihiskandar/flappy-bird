@@ -202,7 +202,7 @@ export default function ClassicFlappy() {
 		// start game
 		window.addEventListener('keypress', handleKeyPress);
 		return () => {
-			ctx.reset();
+			// ctx.reset();
 			window.removeEventListener('keypress', handleKeyPress);
 		};
 	}, []);

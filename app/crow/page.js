@@ -212,7 +212,7 @@ export default function CrowFlappy() {
 		// Start game
 		window.addEventListener('keypress', handleKeyPress);
 		return () => {
-			ctx.reset();
+			// ctx.reset();
 			window.removeEventListener('keypress', handleKeyPress);
 		};
 	}, []);
