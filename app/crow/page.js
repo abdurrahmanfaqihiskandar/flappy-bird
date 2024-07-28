@@ -151,9 +151,8 @@ export default function CrowFlappy() {
 							pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + birdHeight
 						].every((elem) => elem)
 					) {
-						paused = true;
-						// gameStarted = false;
-						// setupGame();
+						gameStarted = false;
+						setupGame();
 					}
 				});
 
